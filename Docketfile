@@ -1,7 +1,7 @@
 FROM centos:7.9.2009
 WORKDIR /data/src
-ADD node.pem
-RUN cd data && \
+ADD node.pem /data/src
+RUN cd /data && \
     mkdir apps htdocs exec var dev  && \
     yum -y install curl vim zip unzip wget git && \
     cd src && \
