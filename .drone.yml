@@ -13,6 +13,8 @@ steps:
   image: qwert555312/centos-node
   commands:
       - sed  -i 's#\#   StrictHostKeyChecking ask#StrictHostKeyChecking no#'  /etc/ssh/ssh_config
+      - cd /data/src
+      - ls
       - touch qwe.txt
       - echo 123 > qwe.txt
       - chmod 600 node.pem
