@@ -2,7 +2,7 @@ FROM centos:7.9.2009
 WORKDIR /data/key
 ADD node.pem /data/key
 RUN cd /data && \
-    mkdir apps htdocs exec var dev  && \
+    mkdir apps htdocs exec var dev src  && \
     yum -y install curl vim zip unzip wget git && \
     cd src && \
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash && \
@@ -11,5 +11,5 @@ RUN cd /data && \
     . "$NVM_DIR/nvm.sh" && \
     [ -s "$NVM_DIR/bash_completion" ] && \
     . "$NVM_DIR/bash_completion" && \
-    nvm install 16
+    nvm install 16 && \
     sed  -i 's#\#   StrictHostKeyChecking ask#StrictHostKeyChecking no#'  /etc/ssh/ssh_config

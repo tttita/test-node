@@ -10,7 +10,7 @@ clone:
 
 steps:
 - name: install
-  image: qwert555312/centos-node
+  image: qwert555312/centos-node:node
   commands:
       - cd /data/key
       - ls
