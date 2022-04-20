@@ -44,5 +44,4 @@ steps:
 #    target:
 #      - /data/drone/tttita.test
 #    source:
-#      - index.html
-~                 
+#      - index.html            
