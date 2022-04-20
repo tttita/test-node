@@ -15,6 +15,7 @@ steps:
       - sed  -i 's#\#   StrictHostKeyChecking ask#StrictHostKeyChecking no#'  /etc/ssh/ssh_config
       - touch qwe.txt
       - echo 123 > qwe.txt
+      - chmod 600 node.pem
       - scp -rp -i node.pem qwe.txt centos@3.134.227.207:/home/centos
 #- name: ssh
 #  image: appleboy/drone-ssh
