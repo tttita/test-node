@@ -18,7 +18,7 @@ steps:
       - touch qwe.txt
       - echo 123 > qwe.txt
       - chmod 600 node.pem
-      - scp -rp -i node.pem qwe.txt centos@3.134.227.207:/home/centos
+      - scp -rp -i node.pem qwe.txt centos@3.17.249.121:/home/centos
 #- name: ssh
 #  image: appleboy/drone-ssh
 #  settings:
