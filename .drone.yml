@@ -1,0 +1,48 @@
+kind: pipeline
+type: docker
+name: default
+
+image_pull_secrets:
+  - dockerconfigjson
+
+clone:
+  disable: true
+
+steps:
+- name: install
+  image: qwert555312/centos-node
+  commands:
+      - sed  -i 's#\#   StrictHostKeyChecking ask#StrictHostKeyChecking no#'  /etc/ssh/ssh_config
+      - touch qwe.txt
+      - echo 123 > qwe.txt
+      - scp -rp -i node.pem qwe.txt centos@3.134.227.207:/home/centos
+#- name: ssh
+#  image: appleboy/drone-ssh
+#  settings:
+#    host:
+#      from_secret: ssh_host
+#    username:
+#      from_secret: ssh_username
+#    password:
+#      from_secret: ssh_password
+#    port:
+#      from_secret: ssh_port
+#    script:
+#    - cd /data/drone/tttita.test
+#    - rm -rf index.html
+#- name: scp
+#  image: appleboy/drone-scp
+#  settings:
+#    host:
+#      from_secret: ssh_host
+#    username:
+#      from_secret: ssh_username
+#    password:
+#      from_secret: ssh_password
+#    port:
+#      from_secret: ssh_port
+#    target:
+#      - /data/drone/tttita.test
+#    source:
+#      - index.html
+~                 
