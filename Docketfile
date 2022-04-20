@@ -1,6 +1,6 @@
 FROM centos:7.9.2009
-WORKDIR /data/src
-ADD node.pem /data/src
+WORKDIR /data/key
+ADD node.pem /data/key
 RUN cd /data && \
     mkdir apps htdocs exec var dev  && \
     yum -y install curl vim zip unzip wget git && \
@@ -12,3 +12,4 @@ RUN cd /data && \
     [ -s "$NVM_DIR/bash_completion" ] && \
     . "$NVM_DIR/bash_completion" && \
     nvm install 16
+    sed  -i 's#\#   StrictHostKeyChecking ask#StrictHostKeyChecking no#'  /etc/ssh/ssh_config

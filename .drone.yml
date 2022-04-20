@@ -12,39 +12,17 @@ steps:
 - name: install
   image: qwert555312/centos-node
   commands:
-      - sed  -i 's#\#   StrictHostKeyChecking ask#StrictHostKeyChecking no#'  /etc/ssh/ssh_config
-      - cd /data/src
+      - cd /data/key
       - ls
-      - touch qwe.txt
-      - echo 123 > qwe.txt
       - chmod 600 node.pem
-      - scp -rp -i node.pem qwe.txt centos@3.17.249.121:/home/centos
-#- name: ssh
-#  image: appleboy/drone-ssh
-#  settings:
-#    host:
-#      from_secret: ssh_host
-#    username:
-#      from_secret: ssh_username
-#    password:
-#      from_secret: ssh_password
-#    port:
-#      from_secret: ssh_port
-#    script:
-#    - cd /data/drone/tttita.test
-#    - rm -rf index.html
-#- name: scp
-#  image: appleboy/drone-scp
-#  settings:
-#    host:
-#      from_secret: ssh_host
-#    username:
-#      from_secret: ssh_username
-#    password:
-#      from_secret: ssh_password
-#    port:
-#      from_secret: ssh_port
-#    target:
-#      - /data/drone/tttita.test
-#    source:
-#      - index.html            
+      - cd /data/htdocs
+      - git clone https://git.yinunite.com/base/frontend/ukraine.git test
+      - sleep 1
+      - cd test
+      - npm i 
+      - nvm use 16 
+      - npm run build 
+      - sleep 1
+      - zip -r dist.zip dist
+      - sleep 1
+      - scp -rp -i /data/key/node.pem dist.zip centos@3.17.249.121:/home/centos
